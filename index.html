@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baguio's Stay Updated</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, select {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+        input[readonly] {
+            background-color: #e9ecef;
+        }
+        button {
+            padding: 10px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Baguio Stay Registration</h1>
+        <form id="registrationForm">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="phoneNumber">Phone Number</label>
+            <div style="display: flex;">
+                <input type="text" id="countryCode" value="+63" readonly style="width: 60px; margin-right: 10px;">
+                <input type="tel" id="phoneNumber" name="phoneNumber" maxlength="10" pattern="\d{10}" required placeholder="Enter 10-digit phone number">
+            </div>
+            
+            <label for="duration">Duration of Stay (in days)</label>
+            <input type="number" id="duration" name="duration" required>
+            
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const phoneNumber = document.getElementById('countryCode').value + document.getElementById('phoneNumber').value;
+            const duration = document.getElementById('duration').value;
+
+            if (document.getElementById('phoneNumber').value.length !== 10) {
+                alert('Please enter a valid 10-digit phone number.');
+                return;
+            }
+
+            // Simulate sending the data to a server
+            alert(`Thank you for registering, ${name}! We have recorded your stay duration as ${duration} days and your phone number as ${phoneNumber}.`);
+
+            // Reset the form
+            this.reset();
+        });
+    </script>
+</body>
+</html>
+
